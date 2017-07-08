@@ -7,4 +7,7 @@
     * git checkout https://github.com/Activiti/Activiti.git
     * 切换到github线上 5.22.0-release版本 git checkout -b 5.22.0 origin/5.22.0-release
     * 将数据库从h2转为mysql
+    * 几个重要的配置文件
+      * db.properties 数据库配置
+      * engine.properties 默认创建用户和组，还有流程定义和模型。
          
