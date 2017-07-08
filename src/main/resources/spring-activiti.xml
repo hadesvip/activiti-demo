@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!--加载配置文件-->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <array>
+        <value>classpath:app.properties</value>
+      </array>
+    </property>
+  </bean>
+
+  <!--datasouce 配置-->
+  <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
+    <property name="driverClassName" value="${activiti.jdbcDriver}"/>
+    <property name="url" value="${activiti.jdbc.url}"/>
+    <property name="username" value="${activiti.jdbcUsername}"/>
+    <property name="password" value="${activiti.jdbcUsername}"/>
+  </bean>
+
+  <!--流程引擎配置-->
+  <!--StandaloneProcessEngineConfiguration这个类被用于构建ProcessEngine，
+  有多个可用类被用于定义processEngineConfiguration,代表了不同的环境和设置默认配置。-->
+  <bean id="processEngineConfig"
+    class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+    <property name="dataSource" ref="datasource"/>
+    <!--此属性可以不设置，从数据库连接自动检测-->
+    <property name="databaseType" value="mysql"/>
+    <property name="databaseSchemaUpdate" value="true"/>
+    <property name="jobExecutorActivate" value="false"/>
+    <property name="asyncExecutorEnabled" value="true"/>
+    <property name="asyncExecutorActivate" value="false"/>
+  </bean>
+
+
+</beans>

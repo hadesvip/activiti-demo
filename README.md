@@ -10,4 +10,9 @@
     * 几个重要的配置文件
       * db.properties 数据库配置
       * engine.properties 默认创建用户和组，还有流程定义和模型。
+           
+3. BPMN2.0
          
+4. Activiti数据库脚本存在地址
+      * Activiti官方zip包的database目录中存在的脚本
+      * activiti-engine-xx.jar中的org.activiti.db 目录中的create,drop目录
