@@ -17,7 +17,7 @@
     <property name="driverClassName" value="${activiti.jdbcDriver}"/>
     <property name="url" value="${activiti.jdbc.url}"/>
     <property name="username" value="${activiti.jdbcUsername}"/>
-    <property name="password" value="${activiti.jdbcUsername}"/>
+    <property name="password" value="${activiti.jdbcPassword}"/>
   </bean>
 
   <!--流程引擎配置-->
@@ -28,10 +28,45 @@
     <property name="dataSource" ref="datasource"/>
     <!--此属性可以不设置，从数据库连接自动检测-->
     <property name="databaseType" value="mysql"/>
+    <!--此属性用于数据库脚本更新-->
     <property name="databaseSchemaUpdate" value="true"/>
+    <!--作业执行者-->
     <property name="jobExecutorActivate" value="false"/>
+    <!--启动一部作业执行者-->
     <property name="asyncExecutorEnabled" value="true"/>
-    <property name="asyncExecutorActivate" value="false"/>
+    <!--指示Activiti引擎启动时启动异步执行器线程池-->
+    <property name="asyncExecutorActivate" value="true"/>
+
+    <!--事件监听-->
+    <property name="eventListeners">
+      <list>
+        <bean class="com.activiti.listener.MyEventListener"></bean>
+      </list>
+    </property>
+
+    <property name="typedEventListeners">
+      <map>
+        <entry key="JOB_EXECUTION_SUCCESS,JOB_EXECUTION_FAILURE">
+          <list>
+            <bean class="com.activiti.listener.MyEventListener"/>
+          </list>
+        </entry>
+      </map>
+    </property>
+  </bean>
+
+  <bean id="threadFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:jboss/ee/concurrency/factory/default"/>
+  </bean>
+
+  <!--<bean id="customJobExecutor" class="org.activiti.engine.impl.jobexecutor.ManagedJobExecutor">-->
+  <!--<property name="threadFactory" ref="threadFactory"/>-->
+  <!--</bean>-->
+
+  <!--异步执行者-->
+  <bean id="asyncJobExecutor"
+    class="org.activiti.engine.impl.asyncexecutor.ManagedAsyncJobExecutor">
+    <property name="threadFactory" ref="threadFactory"/>
   </bean>
 
 

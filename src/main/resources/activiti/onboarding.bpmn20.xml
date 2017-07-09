@@ -41,15 +41,13 @@
     <sequenceFlow id="sid-37A73ACA-2E23-400B-96F3-71F77738DAFA" sourceRef="automatedIntro"
       targetRef="endOnboarding"></sequenceFlow>
     <!--<scriptTask id="automatedIntro" name="Generic and Automated Data Entry"-->
-    <!--scriptFormat="javascript" activiti:autoStoreVariables="false">-->
-    <!--<script><![CDATA[var dateAsString = new Date().toString();-->
+      <!--scriptFormat="javascript" activiti:autoStoreVariables="false">-->
+      <!--<script><![CDATA[var dateAsString = new Date().toString();-->
     <!--execution.setVariable("autoWelcomeTime", dateAsString);]]></script>-->
     <!--</scriptTask>-->
     <!--使用java代码片段-->
     <scriptTask id="automatedIntro" name="Generic and Automated Data Entry"
-      activiti:class="com.activiti.script.AutomatedDataDelegate">
-
-    </scriptTask>
+      activiti:class="com.activiti.script.AutomatedDataDelegate"/>
 
     <sequenceFlow id="automatedIntroPath" sourceRef="decision"
       targetRef="automatedIntro"></sequenceFlow>
