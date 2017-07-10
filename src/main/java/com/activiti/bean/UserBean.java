@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by wangyong on 2017/7/9.
  */
-@Component
+//@Component
 public class UserBean {
 
   @Autowired
