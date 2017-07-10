@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="activitiDemos">
+  <process id="financialReport" name="每月财务报告" isExecutable="true">
+    <documentation>每月用户财务报告流程</documentation>
+    <startEvent id="startEvent" name="开始"></startEvent>
+    <userTask id="writeReportTask" name="写每个月的财务报告" activiti:candidateUsers="accountancy"></userTask>
+    <endEvent id="endEvent" name="结束"></endEvent>
+    <userTask id="verifyReportTask" name="审核财务报告" activiti:candidateUsers="management"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="writeReportTask"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="writeReportTask" targetRef="verifyReportTask"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="verifyReportTask" targetRef="endEvent"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_financialReport">
+    <bpmndi:BPMNPlane bpmnElement="financialReport" id="BPMNPlane_financialReport">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="460.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="writeReportTask" id="BPMNShape_writeReportTask">
+        <omgdc:Bounds height="65.0" width="105.0" x="425.0" y="80.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="460.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="verifyReportTask" id="BPMNShape_verifyReportTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="425.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="477.0" y="55.0"></omgdi:waypoint>
+        <omgdi:waypoint x="477.0" y="80.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="477.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="477.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="477.0" y="235.0"></omgdi:waypoint>
+        <omgdi:waypoint x="477.0" y="260.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
