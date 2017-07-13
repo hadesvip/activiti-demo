@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+  typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+  targetNamespace="http://www.activiti.org/demos">
+  <process id="leaveProcess" name="请假流程" isExecutable="true">
+    <startEvent id="startEvent" name="开始"></startEvent>
+    <userTask id="DMCheck" name="领导审批">
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>deptLeader</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <!-- <scriptTask id="checkResultPrint" name="输出审批结果" scriptFormat="javascript" activiti:autoStoreVariables="false"> -->
+    <serviceTask id="checkResultPrint" name="输出审核结果"
+      activiti:class="com.activiti.service.task.AutomatedLeaveCheckDelegate"/>
+
+    <endEvent id="endEvent" name="结束"></endEvent>
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="DMCheck"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="DMCheck" targetRef="checkResultPrint"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="checkResultPrint" targetRef="endEvent"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leaveProcess">
+    <bpmndi:BPMNPlane bpmnElement="leaveProcess" id="BPMNPlane_leaveProcess">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="100.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="DMCheck" id="BPMNShape_DMCheck">
+        <omgdc:Bounds height="55.0" width="105.0" x="180.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkResultPrint" id="BPMNShape_checkResultPrint">
+        <omgdc:Bounds height="55.0" width="105.0" x="320.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="460.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="135.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="187.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="285.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="187.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="425.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="187.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

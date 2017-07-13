@@ -14,7 +14,7 @@ public class UserBean {
   @Autowired
   private RuntimeService runtimeService;
 
-  @Transactional
+//  @Transactional
   public void hello() {
     runtimeService.startProcessInstanceByKey("helloProcess");
   }

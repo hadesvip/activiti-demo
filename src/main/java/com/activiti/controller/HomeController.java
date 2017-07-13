@@ -1,5 +1,7 @@
 package com.activiti.controller;
 
+import com.activiti.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,8 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
+  @Autowired
+  private IUserService userService;
+
   @RequestMapping("/")
   public String index() {
+
+    userService.hello();
     return "hello,activiti...";
   }
 
