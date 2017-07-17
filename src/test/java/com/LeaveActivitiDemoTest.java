@@ -86,6 +86,10 @@ public class LeaveActivitiDemoTest {
     //完成的任务数量
     long count = historyService.createHistoricProcessInstanceQuery().finished().count();
     assertEquals(1, count);
+
+    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+      System.out.println("shudownhook execute....");
+    }));
   }
 
 }
