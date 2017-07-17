@@ -12,10 +12,8 @@ import java.util.UUID;
 @RestController
 public class UserController {
 
-    @GetMapping("/getUser")
-    public User getUser(String userName) {
-
-
-        return new User(UUID.randomUUID().toString().replace("-", ""), "张三");
-    }
+  @GetMapping("/getUser")
+  public User getUser(String userName) {
+    return new User(UUID.randomUUID().toString().replace("-", ""), "张三");
+  }
 }

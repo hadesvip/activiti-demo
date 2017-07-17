@@ -7,4 +7,8 @@
     * git checkout https://github.com/Activiti/Activiti.git
     * 切换到github线上 5.22.0-release版本 git checkout -b 5.22.0 origin/5.22.0-release
     * 将数据库从h2转为mysql
+    
+    
+## 一个例子:基于一个请假流程
+    
          
