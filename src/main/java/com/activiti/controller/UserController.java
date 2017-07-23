@@ -14,8 +14,6 @@ public class UserController {
 
     @GetMapping("/getUser")
     final public User getUser(final String userName) {
-
-
         return new User(UUID.randomUUID().toString().replace("-", ""), "张三");
     }
 }
