@@ -13,7 +13,7 @@ import java.util.UUID;
 public class UserController {
 
     @GetMapping("/getUser")
-    public User getUser(String userName) {
+    final public User getUser(final String userName) {
 
 
         return new User(UUID.randomUUID().toString().replace("-", ""), "张三");

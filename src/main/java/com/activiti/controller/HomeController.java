@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
+    /**
+     * 首页.
+     *
+     */
     @GetMapping("/")
-    public String index() {
+    final public String index() {
         return "hello,activiti-demo is starting...";
     }
 

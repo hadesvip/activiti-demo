@@ -182,6 +182,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>8.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -196,6 +202,79 @@
                 </configuration>
             </plugin>
 
+            <!--checkstyle-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>8.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>src/main/resources/rule/google_checks.xml</configLocation>
+                    <failOnViolation>false</failOnViolation>
+                </configuration>
+            </plugin>
+
+
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-checkstyle-plugin</artifactId>-->
+            <!--<version>2.17</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>checkstyle</id>-->
+            <!--<phase>validate</phase>-->
+            <!--<configuration>-->
+            <!--<failOnViolation>true</failOnViolation>-->
+            <!--<configLocation>rule/google_checkstyle.xml</configLocation>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+
+            <!--findbugs-->
+
+            <!--<plugin>-->
+            <!--<groupId>org.codehaus.mojo</groupId>-->
+            <!--<artifactId>findbugs-maven-plugin</artifactId>-->
+            <!--<version>2.5.1</version>-->
+            <!--<configuration>-->
+            <!--<xmlOutput>true</xmlOutput>-->
+            <!--<effort>Max</effort>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
+
+            <!--pmd-->
+
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <configLocation>src/main/resources/rule/google_checks.xml</configLocation>
+                    <!--<configLocation>src/main/resources/rule/huawei_checkstyle.xml</configLocation>-->
+                </configuration>
+            </plugin>
+
+            <!--生成xml文件 mvn clean compile findbugs:findbugs-->
+            <!--生成网页mvn compile site-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.4</version>
+            </plugin>
+
+        </plugins>
+
+    </reporting>
 </project>
